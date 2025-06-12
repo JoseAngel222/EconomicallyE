@@ -28,8 +28,6 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/formuser" element={<FormUser />} />*/}
                 <Route path="/advice-form" element={<FinancialDashboard />} /> {/* Ruta para AdviceForm */}
-
-                {/* Agrega más rutas aquí si tienes más vistas */}
             </Routes>
         </Router>
     );

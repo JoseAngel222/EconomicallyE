@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>es.jose</groupId>
     <artifactId>EconomicallyE</artifactId>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.3.1</version> <!-- Usa la versión más reciente -->
+            <version>5.3.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -132,7 +132,7 @@
         <!-- Para convertir objetos a JSON -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId> <!-- O usa jjwt-gson si prefieres -->
+            <artifactId>jjwt-jackson</artifactId>
             <version>0.12.5</version>
             <scope>runtime</scope>
         </dependency>
@@ -165,7 +165,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <annotationProcessorPaths>
-                        <!-- El orden de los procesadores es importante -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -182,7 +181,6 @@
                             <version>${org.mapstruct.version}</version>
                         </path>
                     </annotationProcessorPaths>
-                    <!-- Asegura que el compilador respeta la compatibilidad con Java -->
                     <compilerArgs>
                         <arg>-Amapstruct.defaultComponentModel=spring</arg>
                     </compilerArgs>

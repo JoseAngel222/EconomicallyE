@@ -13,8 +13,8 @@ RUN chmod +x mvnw
 # Ejecuta el build con Maven Wrapper (puede tardar un poco)
 RUN ./mvnw clean package -DskipTests
 
-# Expone el puerto en el que corre la app Spring Boot (por defecto 8080)
+# Expone el puerto en el que corre la app
 EXPOSE 8080
 
-# Comando para ejecutar la app (ajusta el nombre del JAR si es necesario)
+# Comando para ejecutar la app
 CMD ["java", "-jar", "target/EconomicallyE-0.0.1-SNAPSHOT.jar"]

@@ -82,14 +82,16 @@ export default function Footer() {
                             <div className="contact-item">
                                 <Mail size={16}/>
                                 <span>info@economicallye.com</span>
+
                             </div>
                             <div className="contact-item">
                                 <Phone size={16}/>
-                                <span>+1 (555) 123-4567</span>
+                                <span>+34 657 94 68 80</span>
+                                <span>+34 640 87 93 74</span>
                             </div>
                             <div className="contact-item">
                                 <MapPin size={16}/>
-                                <span>Ciudad, País</span>
+                                <span>Madrid, España</span>
                             </div>
                         </div>
                     </div>

@@ -1,32 +1,32 @@
-/* Variables CSS para el tema elegante con fondo blanco */
+/* Variables CSS */
 :root {
     /* Colores principales */
-    --primary-color: #4361ee; /* Azul vibrante */
-    --primary-dark: #3a0ca3; /* Azul más oscuro */
-    --primary-light: #4895ef; /* Azul claro */
+    --primary-color: #4361ee;
+    --primary-dark: #3a0ca3;
+    --primary-light: #4895ef;
 
-    --secondary-color: #7209b7; /* Púrpura */
-    --secondary-dark: #560bad; /* Púrpura oscuro */
-    --secondary-light: #b5179e; /* Rosa púrpura */
+    --secondary-color: #7209b7;
+    --secondary-dark: #560bad;
+    --secondary-light: #b5179e;
 
-    --accent-color: #4cc9f0; /* Turquesa */
-    --accent-dark: #4895ef; /* Azul claro */
+    --accent-color: #4cc9f0;
+    --accent-dark: #4895ef;
 
-    --success-color: #2ecc71; /* Verde */
-    --warning-color: #f39c12; /* Amarillo/naranja */
-    --danger-color: #e74c3c; /* Rojo */
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
 
     /* Colores de fondo para tema claro */
-    --bg-primary: #ffffff; /* Blanco */
-    --bg-secondary: #f8f9fa; /* Gris muy claro */
-    --bg-tertiary: #e9ecef; /* Gris claro */
-    --bg-card: rgba(255, 255, 255, 0.9); /* Blanco con ligera transparencia */
-    --bg-glass: rgba(255, 255, 255, 0.7); /* Blanco más transparente */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --bg-glass: rgba(255, 255, 255, 0.7);
 
     /* Colores de texto para fondo claro */
-    --text-primary: #212529; /* Casi negro */
-    --text-secondary: #495057; /* Gris oscuro */
-    --text-muted: #6c757d; /* Gris medio */
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted: #6c757d;
 
     /* Sombras más sutiles para tema claro */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@
     --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset y base */
+
 * {
     box-sizing: border-box;
 }
@@ -120,7 +120,7 @@
     }
 }
 
-/* Loading elegante */
+
 .elegant-loading-container {
     position: fixed;
     top: 0;
@@ -235,7 +235,7 @@
     animation-delay: -4s;
 }
 
-/* Error elegante */
+
 .elegant-error-container {
     min-height: 100vh;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
@@ -273,7 +273,7 @@
     color: var(--text-secondary);
 }
 
-/* Header elegante */
+
 .elegant-header {
     position: relative;
     z-index: 10;
@@ -321,7 +321,7 @@
     flex-wrap: wrap;
 }
 
-/* Botones elegantes */
+
 .elegant-btn {
     display: inline-flex;
     align-items: center;
@@ -411,7 +411,7 @@
     font-size: 1.1em;
 }
 
-/* Secciones */
+
 .section-title {
     font-size: 2rem;
     font-weight: 600;
@@ -427,7 +427,7 @@
     font-size: 1.5em;
 }
 
-/* Resumen económico */
+
 .economic-overview {
     position: relative;
     z-index: 10;
@@ -515,7 +515,7 @@
     color: var(--text-muted);
 }
 
-/* Tarjetas elegantes */
+
 .elegant-card {
     background: var(--bg-card);
     backdrop-filter: blur(20px);
@@ -578,7 +578,7 @@
     padding: var(--spacing-lg);
 }
 
-/* Secciones específicas */
+
 .income-section,
 .expenses-section,
 .goals-section {
@@ -593,7 +593,7 @@
     gap: var(--spacing-lg);
 }
 
-/* Formularios */
+
 .edit-form {
     display: flex;
     flex-direction: column;
@@ -640,7 +640,7 @@
     flex-wrap: wrap;
 }
 
-/* Listas de gastos */
+
 .expense-list,
 .goals-list {
     display: flex;
@@ -739,7 +739,7 @@
         border: 1px solid rgba(37, 99, 235, 0.2);
     }
 
-    /* Visualización de ingresos */
+
     .income-display {
         text-align: center;
         padding: var(--spacing-xl);
@@ -757,7 +757,7 @@
         color: var(--text-secondary);
     }
 
-    /* Metas de ahorro */
+
     .goals-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -861,7 +861,7 @@
         color: var(--text-muted);
     }
 
-    /* Estados vacíos */
+
     .no-data {
         text-align: center;
         padding: var(--spacing-2xl);
@@ -885,7 +885,7 @@
         font-size: 0.875rem;
     }
 
-    /* Responsive */
+
     @media (max-width: 1024px) {
         .expenses-grid {
             grid-template-columns: 1fr;
@@ -983,7 +983,7 @@
         }
     }
 
-    /* Animaciones adicionales */
+
     @keyframes slideInUp {
         from {
             opacity: 0;
@@ -1000,7 +1000,6 @@
         animation: slideInUp 0.6s ease-out;
     }
 
-    /* Efectos de hover mejorados */
     .elegant-card:hover .card-header {
         background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(139, 92, 246, 0.15));
     }
@@ -1010,7 +1009,7 @@
         transition: transform 0.3s ease;
     }
 
-    /* Mejoras de accesibilidad */
+
     .elegant-btn:focus,
     .elegant-input:focus,
     .elegant-select:focus {
@@ -1018,14 +1017,14 @@
         outline-offset: 2px;
     }
 
-    /* Efectos de glassmorphism */
+
     .elegant-card,
     .overview-card {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
     }
 
-    /* Gradientes de texto */
+
     .section-title {
         background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
         -webkit-background-clip: text;
@@ -1033,7 +1032,6 @@
         background-clip: text;
     }
 
-/* Estilos para el Modal de Carga */
 .loading-modal-overlay {
     position: fixed;
     top: 0;
@@ -1306,7 +1304,7 @@
     }
 }
 
-/* Efectos adicionales para el modal */
+
 .loading-modal-content::before {
     content: '';
     position: absolute;
@@ -1328,7 +1326,7 @@
     }
 }
 
-/* Animación de los pasos de carga */
+
 .loading-step.active .step-icon {
     animation: stepPulse 1.5s ease-in-out infinite;
 }
@@ -1342,7 +1340,7 @@
     }
 }
 
-/* Responsive para el modal */
+
 @media (max-width: 768px) {
     .loading-modal-content {
         padding: 32px 24px;
@@ -1401,7 +1399,7 @@
     }
 }
 
-/* Animación de entrada suave para los elementos del modal */
+
 .loading-modal-body > * {
     animation: fadeInUp 0.6s ease-out forwards;
     opacity: 0;
@@ -1431,12 +1429,12 @@
     }
 }
 
-/* Efecto de glow para el progreso */
+
 .progress-fill {
     box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
 }
 
-/* Animación secuencial de los pasos */
+
 .loading-step:nth-child(1).active {
     animation: stepActivate 0.5s ease-out 0.5s forwards;
 }
@@ -1468,18 +1466,8 @@
 
 
 
-
-
-
-
-
-
 /* ================================
-   ESTILOS MODO OSCURO PARA VISTAS ADICIONALES
-   ================================ */
-
-/* ================================
-   PERFIL EDITABLE - MODO OSCURO
+             MODO OSCURO
    ================================ */
 
 .dark-theme .elegant-profile-container {
@@ -1714,7 +1702,7 @@
 }
 
 /* ================================
-   HISTORIAL CONSEJOS - MODO OSCURO
+             MODO OSCURO
    ================================ */
 
 .dark-theme .historial-container {
@@ -1788,9 +1776,7 @@
     border: 1px solid #334155;
 }
 
-/* ================================
-   DASHBOARD - MODO OSCURO
-   ================================ */
+
 
 .dark-theme .dashboard-container {
     background-color: var(--bg-primary);
@@ -1890,9 +1876,7 @@
     color: var(--text-muted);
 }
 
-/* ================================
-   LOADING Y ERROR STATES
-   ================================ */
+
 
 .dark-theme .elegant-loading-container {
     background-color: var(--bg-primary);
@@ -1929,9 +1913,7 @@
     color: #ef4444;
 }
 
-/* ================================
-   FORMAS DE FONDO PARA VISTAS
-   ================================ */
+
 
 .dark-theme .background-shapes .shape {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
@@ -1983,17 +1965,12 @@
     }
 }
 
-/* ================================
-   TRANSICIONES SUAVES
-   ================================ */
+
 
 .dark-theme * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ================================
-   MEJORAS DE ACCESIBILIDAD
-   ================================ */
 
 .dark-theme *:focus {
     outline: 2px solid #3b82f6;
@@ -2007,16 +1984,12 @@
 
 
 
-
-
-
-/* Asegúrate de que esto exista */
 .elegant-profile-container.dark-theme {
     background-color: #1a1a1a;
     color: #ffffff;
 }
 
-/* Y todos los estilos específicos para los hijos en modo oscuro */
+
 .elegant-profile-container.dark-theme .elegant-card {
     background-color: #2d2d2d;
     color: #ffffff;

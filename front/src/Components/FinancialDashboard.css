@@ -1,6 +1,4 @@
 
-
-/* Estilos base y contenedor principal */
 .dashboard-container {
     max-width: 80%;
     margin: 0 auto;
@@ -16,7 +14,6 @@
     margin-bottom: 1.5rem;
 }
 
-/* Formulario principal */
 .dashboard-form {
     background-color: white;
     padding: 1.5rem;
@@ -26,7 +23,7 @@
     max-width: 95%;
 }
 
-/* Secciones del formulario */
+
 .form-section {
     margin-bottom: 2rem;
 }
@@ -44,7 +41,7 @@
     margin-bottom: 1rem;
 }
 
-/* Grid para inputs */
+
 .input-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -57,7 +54,7 @@
     }
 }
 
-/* Estilos para inputs */
+
 .input-group {
     margin-bottom: 1rem;
 }
@@ -90,7 +87,7 @@
     resize: vertical;
 }
 
-/* Botones */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -124,7 +121,7 @@
     color: #1e40af;
 }
 
-/* Items de gastos y objetivos */
+
 .expense-item {
     display: flex;
     flex-wrap: wrap;
@@ -146,7 +143,7 @@
     }
 }
 
-/* Panel de consejos */
+
 .advice-panel {
     margin-top: 2rem;
     padding: 1.5rem;
@@ -173,7 +170,7 @@
     line-height: 1.6;
 }
 
-/* Mensajes de error */
+
 .error-message {
     color: #dc2626;
     background-color: #fee2e2;
@@ -183,7 +180,7 @@
     border-left: 4px solid #dc2626;
 }
 
-/* Iconos */
+
 .icon {
     width: 1rem;
     height: 1rem;

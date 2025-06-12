@@ -75,7 +75,7 @@ public class AdviceServiceImpl implements AdviceService {
         // Validación 2: Verificar si el último consejo fue hace menos de 1 semana
         boolean isTooRecent = lastAdvice.isPresent() &&
                 lastAdvice.get().getRecommendationDate()
-                        .isAfter(LocalDateTime.now().minusWeeks(1));
+                        .isAfter(LocalDateTime.now().minusSeconds(5));
 
         if (lastAdvice.isPresent()) {
             if (!dataChanged) {
@@ -95,6 +95,9 @@ public class AdviceServiceImpl implements AdviceService {
 
         // Generar el consejo
         Locale locale = localeResolver.resolveLocale(request);
+        System.out.println(" Locale detectado: " + locale);
+        System.out.println(" Idioma: " + locale.getLanguage());
+        System.out.println(" Accept-Language header: " + request.getHeader("Accept-Language"));
         String prompt = buildPrompt(user, currentFixedExpenses, currentVariableExpenses,
                 currentGoals, questionnaire.getPlannedSavings(), locale);
 
@@ -218,7 +221,10 @@ public class AdviceServiceImpl implements AdviceService {
         StringBuilder prompt = new StringBuilder();
         String dataHash = calculateUserDataHash(user, fixedExpenses, variableExpenses, goals);
 
-        if (locale.getLanguage().equals(new Locale("es").getLanguage())) {
+        boolean isSpanish = locale.getLanguage().equals("es");
+
+
+        if (isSpanish) {
             prompt.append("Por favor, responde completamente en español.\n\n");
         } else {
             prompt.append(" (IMPORTANT) Please respond entirely in English.\n\n");

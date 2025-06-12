@@ -1,19 +1,14 @@
 
-/* Importar fuentes de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 /* Variables de fuentes */
 :root {
-    /* Opción 1: Inter - Moderna y profesional */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    /* Opción 2: Poppins - Amigable y redondeada */
     --font-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    /* Opción 3: Outfit - Contemporánea y distintiva */
     --font-accent: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    /* Opción 4: Space Grotesk - Tecnológica y única */
     --font-tech: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -25,7 +20,7 @@ body {
     letter-spacing: -0.01em;
 }
 
-/* Títulos principales con fuente distintiva */
+/* Títulos principales  */
 h1, .welcome-title, .main-header h3 {
     font-family: var(--font-accent);
     font-weight: 700;
@@ -33,7 +28,6 @@ h1, .welcome-title, .main-header h3 {
     line-height: 1.2;
 }
 
-/* Subtítulos con fuente secundaria */
 h2, h3, .feature-header h3, .about-header h3 {
     font-family: var(--font-secondary);
     font-weight: 600;
@@ -41,14 +35,12 @@ h2, h3, .feature-header h3, .about-header h3 {
     line-height: 1.3;
 }
 
-/* Títulos de sección más pequeños */
 h4, .about-text h4, .feature-card h4 {
     font-family: var(--font-accent);
     font-weight: 500;
     letter-spacing: -0.01em;
 }
 
-/* Texto del cuerpo */
 p, .about-description, .feature-card p {
     font-family: var(--font-primary);
     font-weight: 400;
@@ -56,7 +48,6 @@ p, .about-description, .feature-card p {
     letter-spacing: -0.005em;
 }
 
-/* Botones con fuente tecnológica */
 .btn, .header-nav-btn, .login-btn, .register-btn, .sign-out-btn {
     font-family: var(--font-tech);
     font-weight: 500;
@@ -78,7 +69,6 @@ p, .about-description, .feature-card p {
     letter-spacing: -0.005em;
 }
 
-/* Estilos específicos para diferentes secciones */
 
 /* Hero Section */
 .content h1 {
@@ -124,7 +114,7 @@ p, .about-description, .feature-card p {
     line-height: 1.6;
 }
 
-/* Botones mejorados */
+/* Botones */
 .btn-primary {
     font-family: var(--font-tech);
     font-weight: 600;
@@ -145,7 +135,7 @@ p, .about-description, .feature-card p {
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-/* Header mejorado */
+/* Header */
 .main-header {
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.9);
@@ -163,7 +153,7 @@ p, .about-description, .feature-card p {
     transition: all 0.3s ease;
 }
 
-/* Responsive typography */
+
 @media (max-width: 768px) {
     .content h1 {
         font-size: 2.25rem;
@@ -188,18 +178,17 @@ p, .about-description, .feature-card p {
     }
 }
 
-/* Mejoras adicionales de legibilidad */
+
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Espaciado mejorado para mejor legibilidad */
+/* Espaciado mejor legibilidad */
 .about-text p, .feature-card p {
     margin-bottom: 1rem;
 }
 
-/* Contraste mejorado para accesibilidad */
 .text-muted {
     color: #6b7280 !important;
 }
@@ -222,37 +211,36 @@ p, .about-description, .feature-card p {
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
 
-/* --- Variables CSS --- */
 :root{
     /* Colores principales */
-    --primary-color: #4361ee; /* Azul vibrante */
-    --primary-dark: #3a0ca3; /* Azul más oscuro */
-    --primary-light: #4895ef; /* Azul claro */
+    --primary-color: #4361ee;
+    --primary-dark: #3a0ca3;
+    --primary-light: #4895ef;
 
-    --secondary-color: #7209b7; /* Púrpura */
-    --secondary-dark: #560bad; /* Púrpura oscuro */
-    --secondary-light: #b5179e; /* Rosa púrpura */
+    --secondary-color: #7209b7;
+    --secondary-dark: #560bad;
+    --secondary-light: #b5179e;
 
-    --accent-color: #4cc9f0; /* Turquesa */
-    --accent-dark: #4895ef; /* Azul claro */
+    --accent-color: #4cc9f0;
+    --accent-dark: #4895ef;
 
-    --success-color: #2ecc71; /* Verde */
-    --warning-color: #f39c12; /* Amarillo/naranja */
-    --danger-color: #e74c3c; /* Rojo */
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
 
-    /* Colores de fondo para tema claro */
-    --bg-primary: #ffffff; /* Blanco */
-    --bg-secondary: #f8f9fa; /* Gris muy claro */
-    --bg-tertiary: #e9ecef; /* Gris claro */
-    --bg-card: rgba(255, 255, 255, 0.9); /* Blanco con ligera transparencia */
-    --bg-glass: rgba(255, 255, 255, 0.7); /* Blanco más transparente */
 
-    /* Colores de texto para fondo claro */
-    --text-primary: #212529; /* Casi negro */
-    --text-secondary: #495057; /* Gris oscuro */
-    --text-muted: #6c757d; /* Gris medio */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --bg-glass: rgba(255, 255, 255, 0.7);
 
-    /* Sombras más sutiles para tema claro */
+
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --text-muted: #6c757d;
+
+    /* Sombras */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
@@ -353,16 +341,16 @@ header {
     z-index: 10;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* ASEGURA: Alineación vertical de todos los elementos */
+    align-items: center;
     width: calc(100% - 4rem);
-    height: 60px; /* AGREGADO: Altura fija para el header */
+    height: 60px;
 }
 
 
 header .container-logo {
     flex: 1;
     display: flex;
-    align-items: center; /* AGREGADO: Alineación vertical */
+    align-items: center;
     gap: 0.25rem;
 }
 
@@ -380,38 +368,36 @@ header .container-logo image {
 
 /* --------------- ESTILOS DE BOTONES DEL HEADER --------------- */
 
-/* Contenedor de botones del header */
+
 .header-buttons {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    align-items: center; /* AGREGADO: Alinea verticalmente */
+    align-items: center;
     gap: 1rem;
     padding: 0;
-    margin: 0; /* AGREGADO: Elimina cualquier margen */
+    margin: 0;
 }
 
-/* Estilo base para todos los botones dentro de .header-buttons */
 .header-buttons button {
-    padding: 10px 20px; /* Padding consistente */
+    padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.9rem; /* AGREGADO: Tamaño de fuente consistente */
-    line-height: 1.2; /* AGREGADO: Altura de línea consistente */
+    font-size: 0.9rem;
+    line-height: 1.2;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
     border: 1px solid grey;
-    margin: 0; /* AGREGADO: Elimina márgenes */
-    height: 40px; /* AGREGADO: Altura fija para todos los botones */
-    display: flex; /* AGREGADO: Para centrar el contenido */
-    align-items: center; /* AGREGADO: Centra verticalmente el texto */
-    justify-content: center; /* AGREGADO: Centra horizontalmente el texto */
-    white-space: nowrap; /* AGREGADO: Evita que el texto se divida en líneas */
+    margin: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
-/* Pseudo-elemento para el efecto de brillo */
 .header-buttons button::before {
     content: "";
     position: absolute;
@@ -425,10 +411,10 @@ header .container-logo image {
 }
 
 .header-buttons button:hover::before {
-    left: 100%; /* Se mueve hacia la derecha */
+    left: 100%;
 }
 
-/* Estilos específicos para el botón de Login */
+/* Estilos para el botón de Login */
 .login-btn {
     background-color: transparent;
     border: 1px solid #0d85fd;
@@ -443,7 +429,7 @@ header .container-logo image {
     transform: translateY(-1px);
 }
 
-/* Estilos específicos para el botón de Register */
+/* Estilos para el botón de Register */
 .register-btn {
     background-color: #0d85fd;
     border: 1px solid #0d85fd;
@@ -451,28 +437,26 @@ header .container-logo image {
 }
 
 .register-btn:hover {
-    background-color: #0b5ed7; /* Azul ligeramente más oscuro al pasar el ratón */
+    background-color: #0b5ed7;
     border-color: #0b5ed7;
-    box-shadow: var(--shadow-sm); /* Sombra al pasar el ratón */
-    transform: translateY(-1px); /* Ligero levantamiento */
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
 }
 
-/* Estilos para el botón de Sign-Out */
+/* Estilos para Sign-Out */
 .sign-out-btn {
     background-color: #dc3545;
     color: white;
-    border: 1px solid #dc3545; /* AGREGADO: Borde consistente */
+    border: 1px solid #dc3545;
 }
 
 .sign-out-btn:hover {
     background-color: #c82333;
-    border-color: #c82333; /* AGREGADO: Borde hover consistente */
+    border-color: #c82333;
     transform: translateY(-1px);
     box-shadow: var(--shadow);
 }
 
-/* Pseudo-elemento para el efecto de brillo en Sign-Out si no quieres que lo herede de .header-buttons button */
-/* Pseudo-elemento para el efecto de brillo en Sign-Out */
 .sign-out-btn::before {
     content: "";
     position: absolute;
@@ -490,23 +474,22 @@ header .container-logo image {
 }
 
 
-/* Estilos para los botones "Cuenta" y "Progreso" (si user está logueado) */
-/* Les damos una nueva clase para evitar conflictos con .header-buttons button */
+
 .header-nav-btn {
-    margin: 0; /* CORREGIDO: Elimina margen */
+    margin: 0;
     background-color: white;
     border: 1px solid #ccc;
     color: black;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.9rem; /* AGREGADO: Tamaño consistente */
-    line-height: 1.2; /* AGREGADO: Altura de línea consistente */
-    height: 40px; /* AGREGADO: Altura fija */
-    display: flex; /* AGREGADO: Para centrar contenido */
-    align-items: center; /* AGREGADO: Centra verticalmente */
-    justify-content: center; /* AGREGADO: Centra horizontalmente */
-    white-space: nowrap; /* AGREGADO: Evita división de texto */
+    font-size: 0.9rem;
+    line-height: 1.2;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -520,7 +503,7 @@ header .container-logo image {
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
 }
-/* Pseudo-elemento para el efecto de brillo en .header-nav-btn */
+
 .header-nav-btn::before {
     content: "";
     position: absolute;
@@ -537,74 +520,40 @@ header .container-logo image {
     left: 100%;
 }
 
-/* Contenedor de elementos de navegación del header */
+/* Contenedor de ITEMS del header */
 .items {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center; /* AGREGADO: Alineación vertical */
     gap: 3rem;
-    margin: 0; /* AGREGADO: Elimina márgenes */
-    padding: 0; /* AGREGADO: Elimina padding */
+    margin: 0;
+    padding: 0;
 }
-/* ELIMINAR ESTO: Está causando conflictos. Los estilos específicos deben sobrescribir. */
-/* .items button{
-    margin-top: 0px;
-    background-color: white;
-    border: 1px solid #ccc;
-    color: black;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: none;
-} */
-/* ELIMINAR ESTO: Ya se maneja en .header-buttons button::before */
-/* .items button::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-} */
-/* ELIMINAR ESTO: Ya se maneja en .header-buttons button:hover::before */
-/* .items button:hover::before{
-    left: 100%;
-} */
 
-/* ELIMINAR ESTO: Esto no es para botones, es para el contenedor, y su padding se duplica con los botones */
-/* .header-buttons{
-    margin-top: 0px;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-} */
 
 /* --------------- ESTILOS PARA BOTÓN "COMIENZA AHORA" --------------- */
 
-/* Utiliza cta-btn como tu clase principal y más específica */
 .cta-btn {
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
-    background: linear-gradient(135deg, #0d6efd, #053f78); /* Gradiente azul */
+    background: linear-gradient(135deg, #0d6efd, #053f78);
     color: white;
     border: none;
-    border-radius: 8px; /* Ligeramente más redondeado */
+    border-radius: 8px;
     cursor: pointer;
-    transition: var(--transition); /* Usar la variable de transición */
+    transition: var(--transition);
     font-weight: 700; /* Más negrita */
-    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2); /* Sombra */
+    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.2);
     position: relative;
-    overflow: hidden; /* Para el efecto de brillo */
-    z-index: 1; /* Asegura que el botón y su contenido estén por encima del brillo */
+    overflow: hidden;
+    z-index: 1;
 }
 
 .cta-btn:hover {
-    background: linear-gradient(135deg, #0b5ed7, #043566); /* Gradiente más oscuro al hover */
-    transform: translateY(-2px); /* Se eleva un poco */
-    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.35); /* Sombra más grande */
+    background: linear-gradient(135deg, #0b5ed7, #043566);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.35);
 }
 
 /* Efecto de brillo para .cta-btn */
@@ -615,29 +564,15 @@ header .container-logo image {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.15); /* Una capa blanca transparente */
-    transform: skewX(-30deg); /* Inclina la capa */
-    transition: all 0.7s ease; /* Transición más larga para un efecto más suave */
-    z-index: 0; /* Asegura que esté por debajo del texto del botón */
+    background: rgba(255, 255, 255, 0.15);
+    transform: skewX(-30deg);
+    transition: all 0.7s ease;
+    z-index: 0;
 }
 
 .cta-btn:hover::before {
-    left: 100%; /* Desliza la capa de brillo de izquierda a derecha */
+    left: 100%;
 }
-
-/* La regla .cta-section button es menos específica y puede eliminarse o usarse para un fallback */
-/* Si la de arriba (.cta-btn) es la principal, puedes eliminar esta */
-/* .cta-section button {
-    background-color: #0d85fd;
-    color: white;
-}
-.cta-section button:hover {
-    background-color: #053f78;
-    transform: translateY(2px);
-} */
-
-
-/* Resto de tu CSS... (asegúrate de que todo lo demás esté después de esto para que las reglas específicas tengan prioridad) */
 
 
 form {
@@ -740,7 +675,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001; /* Z-index muy alto para estar por encima del nav */
+    z-index: 1001;
     animation: fadeInOverlay 0.3s ease-in-out;
 }
 
@@ -823,7 +758,7 @@ form {
     transform-style: preserve-3d;
 }
 
-/* Estilos adicionales para la nueva sección */
+
 .financial-features {
     padding: 4rem 2rem;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -937,10 +872,9 @@ form {
 }
 
 /* ================================
-   RESPONSIVE DESIGN - MOBILE FIRST
+           DISEÑO RESPONSIVE
    ================================ */
 
-/* Mobile devices (320px - 768px) */
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -948,9 +882,9 @@ form {
         min-height: 100vh;
     }
 
-    /* Header responsive */
+
     header {
-        height: auto; /* Permite altura automática en móvil */
+        height: auto;
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
@@ -977,7 +911,7 @@ form {
         padding: 0;
     }
 
-    header .items button { /* Aquí podemos usar la clase header-nav-btn */
+    header .items button {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
@@ -992,16 +926,16 @@ form {
     .header-buttons button {
         padding: 10px 20px;
         font-size: 0.9rem;
-        height: 40px; /* Mantiene altura consistente en móvil */
+        height: 40px;
     }
 
     .header-nav-btn {
         padding: 8px 16px;
         font-size: 0.9rem;
-        height: 36px; /* Ligeramente más pequeño en móvil */
+        height: 36px;
     }
 
-    /* Content section responsive */
+
     .content {
         margin-top: 2rem;
         flex-direction: column;
@@ -1033,7 +967,7 @@ form {
 
     }
 
-    /* Financial features responsive */
+
     .financial-features {
         padding: 2rem 1rem;
         margin: 1rem 0;
@@ -1072,7 +1006,7 @@ form {
         min-height: 150px;
     }
 
-    /* Information section responsive */
+
     .information {
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -1090,14 +1024,14 @@ form {
         font-size: 1rem;
     }
 
-    /* Card responsive */
+
     .card {
         width: 100%;
         margin: 1rem 0;
         padding: 1rem;
     }
 
-    /* Modal responsive */
+
     .modal-content {
         padding: 20px;
         width: 95%;
@@ -1111,7 +1045,7 @@ form {
         right: 15px;
     }
 
-    /* Buttons responsive */
+
     .buttons {
         flex-direction: column;
         gap: 0.5rem;
@@ -1125,7 +1059,7 @@ form {
     }
 }
 
-/* Small mobile devices (max-width: 480px) */
+
 @media (max-width: 480px) {
     .container {
         padding: 10px;
@@ -1186,7 +1120,7 @@ form {
     }
 }
 
-/* Tablet devices (769px - 1024px) */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .container {
         padding: 30px;
@@ -1218,14 +1152,14 @@ form {
     }
 }
 
-/* Large screens adjustments */
+
 @media (min-width: 1200px) {
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Landscape orientation on mobile */
+
 @media (max-width: 768px) and (orientation: landscape) {
     .content {
         margin-top: 5%;
@@ -1252,7 +1186,7 @@ form {
     }
 }
 
-/* Print styles */
+
 @media print {
     .modal-overlay,
     .header-buttons,
@@ -1270,7 +1204,7 @@ form {
 }
 
 
-/* Animaciones para el header principal */
+
 .main-header {
     position: absolute;
     top: 2rem;
@@ -1299,7 +1233,7 @@ form {
     pointer-events: none;
 }
 
-/* Animación adicional para los elementos del header */
+
 .main-header .container-logo,
 .main-header .items,
 .main-header .header-buttons {
@@ -1314,7 +1248,7 @@ form {
     opacity: 0;
 }
 
-/* Asegurar que el header original mantenga su estilo */
+
 .main-header .container-logo {
     flex: 1;
 }
@@ -1333,7 +1267,7 @@ form {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    padding-top: 0px; /* Ya lo eliminas en el general, esto se vuelve redundante si lo mantienes */
+    padding-top: 0px;
 }
 
 .about-section {
@@ -1402,7 +1336,7 @@ form {
     color: #64748b;
     line-height: 1.5;
 }
-/* Responsive para el header animado */
+
 @media (max-width: 768px) {
     .main-header {
         position: relative;
@@ -1445,7 +1379,7 @@ form {
     }
 }
 
-/* Ajuste para el scroll nav para que aparezca un poco antes */
+
 .scroll-nav {
     position: fixed;
     top: 0;
@@ -1460,7 +1394,7 @@ form {
     border-bottom: 1px solid rgba(13, 133, 253, 0.1);
 }
 
-/* Efecto de entrada más suave para el scroll nav */
+
 .scroll-nav-visible {
     transform: translateY(0);
     animation: slideInSmoothly 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1480,7 +1414,7 @@ form {
     }
 }
 
-/* Ajuste para que el contenido no se vea afectado cuando el header desaparece */
+
 .content {
     display: flex;
     align-items: center;
@@ -1492,21 +1426,21 @@ form {
     transition: margin-top 0.4s ease;
 }
 
-/* Responsive para móvil - ajustar el margen cuando el header desaparece */
+
 @media (max-width: 768px) {
     .content {
         margin-top: 2rem;
         transition: margin-top 0.4s ease;
     }
 
-    /* Cuando el header está oculto, reducir el margen superior */
+
     .main-header.header-hidden ~ .content {
         margin-top: 1rem;
     }
 }
 
 
-/* Animaciones adicionales */
+
 @keyframes slideInUp {
     from {
         opacity: 0;
@@ -1523,7 +1457,7 @@ form {
     animation: slideInUp 0.6s ease-out;
 }
 
-/* Efectos de hover mejorados */
+
 .elegant-card:hover .card-header {
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(139, 92, 246, 0.15));
 }
@@ -1533,7 +1467,7 @@ form {
     transition: transform 0.3s ease;
 }
 
-/* Mejoras de accesibilidad */
+
 .elegant-btn:focus,
 .elegant-input:focus,
 .elegant-select:focus {
@@ -1541,14 +1475,14 @@ form {
     outline-offset: 2px;
 }
 
-/* Efectos de glassmorphism */
+
 .elegant-card,
 .overview-card {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
 
-/* Gradientes de texto */
+
 .section-title {
     background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
     -webkit-background-clip: text;
@@ -1591,7 +1525,7 @@ form {
     transform: translateY(-1px) scale(0.98);
 }
 
-/* Animación de rotación para el icono */
+
 .dark-mode-toggle svg {
     transition: transform 0.3s ease;
 }
@@ -1600,11 +1534,7 @@ form {
     transform: rotate(15deg);
 }
 
-/* ================================
-   TEMA OSCURO
-   ================================ */
 
-/* Variables para tema oscuro */
 .dark-theme {
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
@@ -1623,18 +1553,20 @@ form {
     --shadow-glow: 0 0 20px rgba(102, 126, 234, 0.4);
 }
 
-/* Aplicar tema oscuro al body */
+
 .dark-theme {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Container principal */
+
 .dark-theme .container {
     /*background-color: var(--bg-primary);*/
     color: var(--text-primary);
 }
+
+
 
 /* Header */
 .dark-theme .main-header {
@@ -1817,7 +1749,7 @@ form {
     color: #3b82f6;
 }
 
-/* Buttons */
+
 .dark-theme .btn-primary {
     background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
@@ -1851,7 +1783,7 @@ form {
 }
 
 /* ================================
-   RESPONSIVE PARA MODO OSCURO
+       RESPONSIVE PARA MODO OSCURO
    ================================ */
 
 @media (max-width: 768px) {
@@ -1877,14 +1809,14 @@ form {
 }
 
 /* ================================
-   ANIMACIONES PARA TRANSICIÓN DE TEMA
+              ANIMACIONES
    ================================ */
 
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Efecto de pulso para el botón cuando cambia el tema */
+
 .dark-mode-toggle.theme-changing {
     animation: themePulse 0.6s ease-in-out;
 }
@@ -1901,7 +1833,7 @@ form {
     }
 }
 
-/* Mejoras de accesibilidad para el modo oscuro */
+
 .dark-theme *:focus {
     outline: 2px solid #3b82f6;
     outline-offset: 2px;
@@ -1911,7 +1843,7 @@ form {
     color: white;
 }
 
-/* Asegurar que el texto sea legible en modo oscuro */
+
 .dark-theme input,
 .dark-theme textarea,
 .dark-theme select {

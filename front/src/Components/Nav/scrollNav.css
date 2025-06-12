@@ -6,7 +6,7 @@
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    z-index: 999; /* Higher than your existing header */
+    z-index: 999;
     transform: translateY(-100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-bottom: 1px solid rgba(13, 133, 253, 0.1);
@@ -293,7 +293,7 @@
     }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .scroll-nav-container {
         padding: 0 1rem;

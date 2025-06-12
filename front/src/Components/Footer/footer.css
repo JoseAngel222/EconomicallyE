@@ -1,21 +1,13 @@
 /* Footer Styles */
 .footer {
-    /* Hacer que el footer ocupe todo el ancho de la ventana */
-    width: 100vw;
-
-    /* Posicionar relativo a la ventana del navegador, no al contenedor padre */
+    width: 100vw;/*Para que ocupe todo el ancho 100%*/
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
-
-    /* Asegurar que esté en el nivel superior */
     z-index: 1;
-
-    /* Eliminar cualquier padding/margin que pueda afectar */
     box-sizing: border-box;
-
     /* Colores y espaciado del footer */
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     color: white;
@@ -191,7 +183,6 @@
     color: #0d85fd;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .footer-content {
         grid-template-columns: 1fr;
@@ -258,7 +249,7 @@
     }
 }
 
-/* Dark theme compatibility */
+
 @media (prefers-color-scheme: dark) {
     .footer-container {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);

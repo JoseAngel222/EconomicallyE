@@ -1,6 +1,4 @@
-/**
- * Componente para mostrar mensajes de error y éxito
- */
+
 export const ErrorDisplay = ({ error, success, className = "" }) => {
     if (!error && !success) return null
 

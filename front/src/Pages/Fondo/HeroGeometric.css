@@ -15,7 +15,6 @@
     transition: background-color 0.5s ease;
 }
 
-/* Modo oscuro para el contenedor principal */
 .hero-container.dark-mode {
     background-color: #0f172a;
     background-image: radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
@@ -31,7 +30,6 @@
     transition: all 0.5s ease;
 }
 
-/* Gradiente de fondo para modo oscuro */
 .background-gradient.dark {
     background: linear-gradient(
             135deg,
@@ -69,7 +67,6 @@
     transition: all 0.5s ease;
 }
 
-/* Modo oscuro para elementos de forma */
 .shape-element.dark {
     backdrop-filter: blur(4px);
     border: 2px solid rgba(59, 130, 246, 0.6);
@@ -86,12 +83,12 @@
     transition: all 0.5s ease;
 }
 
-/* Efectos mejorados para modo oscuro */
+
 .shape-element.dark::after {
     background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.3) 40%, transparent 70%);
 }
 
-/* Clases específicas para los colores de las formas - MODO CLARO */
+
 .shape-indigo {
     background: linear-gradient(to right, rgba(37, 99, 235, 0.12), transparent);
 }
@@ -112,7 +109,6 @@
     background: linear-gradient(to right, rgba(30, 58, 138, 0.16), transparent);
 }
 
-/* Clases específicas para los colores de las formas - MODO OSCURO */
 .shape-indigo.dark {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.35), rgba(37, 99, 235, 0.25), transparent);
 }
@@ -133,7 +129,6 @@
     background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(8, 145, 178, 0.25), transparent);
 }
 
-/* Efectos de brillo adicionales para modo oscuro */
 .elegant-shape.dark-mode .shape-element.dark {
     animation: darkGlow 4s ease-in-out infinite alternate;
 }
@@ -149,7 +144,6 @@
     }
 }
 
-/* Animación de partículas para modo oscuro */
 .hero-container.dark-mode::before {
     content: "";
     position: absolute;
@@ -185,7 +179,6 @@
     transition: all 0.5s ease;
 }
 
-/* Overlay para modo oscuro */
 .overlay-gradient.dark {
     background: linear-gradient(
             to top,
@@ -196,7 +189,7 @@
     );
 }
 
-/* Contenido del Hero */
+
 .content-container {
     position: relative;
     z-index: 10;
@@ -297,7 +290,6 @@
     color: #94a3b8;
 }
 
-/* Media Queries para responsividad */
 @media (min-width: 640px) {
     .title {
         font-size: 6rem;
@@ -318,7 +310,6 @@
     }
 }
 
-/* Efectos especiales para dispositivos móviles en modo oscuro */
 @media (max-width: 768px) {
     .hero-container.dark-mode {
         background-image: radial-gradient(at 50% 20%, rgba(59, 130, 246, 0.2) 0px, transparent 50%),

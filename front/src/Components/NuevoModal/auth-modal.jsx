@@ -137,17 +137,19 @@ export default function AuthModal({ closeModal, initialMode = "login" }) {
             } else {
                 // Intentar extraer el mensaje del backend como JSON o como texto
                 let errorMessage = "Error desconocido";
+                let errorText = await response.text();
 
                 try {
-                    const data = await response.json();
-                    errorMessage = data.message || JSON.stringify(data);
+                    const data = JSON.parse(errorText);
+                    errorMessage = data.message || errorText;
                 } catch {
-                    const text = await response.text();
-                    if (text) errorMessage = text;
+                    errorMessage = errorText;
                 }
+
 
                 console.error("Respuesta de error del backend:", errorMessage);
                 setError(`Error: ${errorMessage}`);
+
             }
         } catch (error) {
             console.error("Registration error:", error);

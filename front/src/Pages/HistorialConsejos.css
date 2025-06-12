@@ -4,8 +4,6 @@
 
 }
 
-
-
 .back-button-container {
     display: flex;
     margin-bottom: 1rem;
@@ -27,26 +25,12 @@
     margin-bottom: 1rem;
     font-size: 1.5rem;
     font-weight: bold;
-    /* Establece el mismo gradiente que usaste para el background */
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-
-    /* Recorta el fondo para que solo se aplique al área del texto */
-    -webkit-background-clip: text; /* Prefijo para compatibilidad con navegadores basados en WebKit */
+    -webkit-background-clip: text;
     background-clip: text;
-
-    /* Hace que el color del texto sea transparente para que el gradiente de fondo sea visible */
-    -webkit-text-fill-color: transparent; /* Prefijo para compatibilidad con navegadores basados en WebKit */
-    color: transparent; /* Fallback para navegadores que no soportan -webkit-text-fill-color */
+    -webkit-text-fill-color: transparent;
 }
 
-/*
-.historial-title h1{
-
-    color: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-
-}
-
- */
 
 .no-consejos-message {
     background-color: #e0f0ff;

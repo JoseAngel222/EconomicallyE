@@ -8,5 +8,5 @@ import java.util.List;
 public interface AdviceService {
     AdviceDTO generateAdvice(FinancialQuestionnaireDTO questionnaire);
     List<AdviceDTO> getAdviceHistory(Long userId);
-    AdviceDTO generateProgressReport(Long userId); // Add this new method
+    AdviceDTO generateProgressReport(Long userId);
 }

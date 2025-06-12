@@ -3,9 +3,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 
-/**
- * Hook para manejar notificaciones toast
- */
 export const useToast = () => {
     const [toasts, setToasts] = useState([])
 

@@ -2,18 +2,22 @@
 
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import "./HistorialConsejos.css"
 import ScrollNav from "../Components/Nav/ScrollNav.jsx"
 import Footer from "../Components/Footer/footer.jsx"
 import { Moon, Sun } from "lucide-react"
+import LanguageSwitcher from "../Components/Idioma/LanguageSwitcher.jsx"
 
-// Componente del botón de modo oscuro
+// Botón de modo oscuro
 function DarkModeToggle({ darkMode, toggleDarkMode }) {
+    const { t } = useTranslation()
+
     return (
         <button
             className="dark-mode-toggle"
             onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            aria-label={darkMode ? t("profile.accessibility.lightMode") : t("profile.accessibility.darkMode")}
         >
             {darkMode ? <Sun size={24} /> : <Moon size={24} />}
         </button>
@@ -21,6 +25,7 @@ function DarkModeToggle({ darkMode, toggleDarkMode }) {
 }
 
 function HistorialConsejos() {
+    const { t, i18n } = useTranslation()
     const [hasCompletedFirstForm, setHasCompletedFirstForm] = useState(false)
     const [darkMode, setDarkMode] = useState(false)
 
@@ -65,13 +70,13 @@ function HistorialConsejos() {
                 })
 
                 if (!response.ok) {
-                    throw new Error(`Error ${response.status}: No se pudieron obtener los consejos`)
+                    throw new Error(t("profile.advice.errorLoading", { status: response.status }))
                 }
 
                 const data = await response.json()
                 setConsejos(data)
             } catch (error) {
-                console.error("Error al cargar consejos:", error)
+                console.error(t("profile.advice.errorLoadingAdvice"), error)
                 setError(error.message)
             } finally {
                 setLoading(false)
@@ -81,17 +86,17 @@ function HistorialConsejos() {
         if (userId) {
             fetchConsejos()
         } else {
-            setError("No se proporcionó un ID de usuario válido")
+            setError(t("profile.advice.invalidUserId"))
             setLoading(false)
         }
-    }, [userId])
+    }, [userId, t])
 
     const handleGoBack = () => {
         navigate(`/perfil/${userId}`)
     }
 
     const parseAdvice = (text) => {
-        if (!text) return <span>No se recibió ningún consejo</span>
+        if (!text) return <span>{t("profile.advice.noAdviceReceived")}</span>
 
         try {
             if (typeof text !== "string") {
@@ -171,6 +176,13 @@ function HistorialConsejos() {
         }
     }
 
+    // Función para formatear la fecha según el idioma actual
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const locale = i18n.language === "es" ? "es-ES" : "en-US"
+        return date.toLocaleDateString(locale)
+    }
+
     if (loading) {
         return (
             <div className={`loading-container ${darkMode ? "dark-theme" : ""}`}>
@@ -194,26 +206,26 @@ function HistorialConsejos() {
     const scrollNavLinks = [
         {
             href: "#inicio",
-            label: "Inicio",
+            label: t("profile.advice.navigation.home"),
             onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }),
         },
         ...(userId
             ? [
                 {
                     href: "Mi cuenta",
-                    label: "Mi Cuenta",
+                    label: t("profile.advice.navigation.myAccount"),
                     onClick: () => navigate(`/perfil/${userId}`),
                 },
                 {
                     href: "edit",
-                    label: "Editar Informacion",
+                    label: t("profile.advice.navigation.editInfo"),
                     onClick: () => navigate(`/perfil/${userId}`),
                 },
                 ...(hasCompletedFirstForm
                     ? [
                         {
                             href: "#",
-                            label: "Consejos",
+                            label: t("profile.advice.navigation.advice"),
                             onClick: () => navigate(`/consejos/${userId}`),
                         },
                     ]
@@ -224,10 +236,10 @@ function HistorialConsejos() {
 
     return (
         <div className={`historial-container ${darkMode ? "dark-theme" : ""}`}>
-            {/* Botón de modo oscuro flotante */}
             <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-            {/* Formas de fondo */}
+            <LanguageSwitcher />
+
             <div className="background-shapes">
                 <div className="shape shape-1"></div>
                 <div className="shape shape-2"></div>
@@ -238,23 +250,25 @@ function HistorialConsejos() {
             <ScrollNav links={scrollNavLinks} user={userId} />
 
             <div className="back-button-container">
-                <h1 className="historial-title">Historial de Consejos</h1>
+                <h1 className="historial-title">{t("profile.advice.historyTitle")}</h1>
                 <button onClick={handleGoBack} className="back-button">
-                    ← Volver al Perfil
+                    {t("profile.advice.backToProfile")}
                 </button>
             </div>
 
             {consejos.length === 0 ? (
-                <div className="no-consejos-message">No tienes consejos generados aún.</div>
+                <div className="no-consejos-message">{t("profile.advice.noAdviceMessage")}</div>
             ) : (
                 <div className="consejos-list">
                     {consejos.map((consejo, index) => (
                         <div key={consejo.id || index} className="consejo-card">
                             <div className="consejo-card-header">
-                                <h5 className="consejo-card-title">Consejo #{index + 1}</h5>
+                                <h5 className="consejo-card-title">
+                                    {t("profile.advice.adviceNumber", { number: consejos.length - index })}
+                                </h5>
                                 {consejo.recommendationDate && (
                                     <small className="consejo-date">
-                                        Fecha: {new Date(consejo.recommendationDate).toLocaleDateString("es-ES")}
+                                        {t("profile.advice.date", { date: formatDate(consejo.recommendationDate) })}
                                     </small>
                                 )}
                             </div>

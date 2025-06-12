@@ -1,6 +1,5 @@
 /* Estilos específicos solo para el modal de autenticación */
 .auth-modal-wrapper {
-    /* Reset solo para el contenedor del modal */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -320,8 +319,9 @@
 @media (max-width: 768px) {
     .auth-modal-wrapper .container {
         width: 90vw;
-        height: 80vh;
+       /* height: 80vh;*/
         max-width: 500px;
+        min-height: 50vh;
     }
 
     .auth-modal-wrapper .info-content.Login,
@@ -333,4 +333,10 @@
     .auth-modal-wrapper .login-container.Register {
         padding: 0 20px;
     }
+    .auth-modal-wrapper .container.active .info-content.Register p,
+    .auth-modal-wrapper .info-content.Login .animation p {
+        display: none;
+    }
+
+
 }

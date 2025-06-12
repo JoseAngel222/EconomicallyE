@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 import "./Perfil.css"
 import ScrollNav from "../Components/Nav/ScrollNav.jsx"
 import Footer from "../Components/Footer/footer.jsx"
@@ -10,6 +11,7 @@ import { Moon, Sun } from "lucide-react"
 import { fetchWithErrorHandling, useErrorHandler } from "../Components/utils/error-handler.js"
 import { FieldError } from "../Components/ErrorDisplay.jsx"
 import { useToast, ToastContainer } from "../Components/toast-notification.jsx"
+import LanguageSwitcher from "../Components/Idioma/LanguageSwitcher.jsx"
 
 const fadeUpVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -26,6 +28,8 @@ const fadeUpVariants = {
 
 // Componente del Modal de Carga
 const LoadingModal = ({ isVisible, onClose }) => {
+    const { t } = useTranslation()
+
     return (
         <AnimatePresence>
             {isVisible && (
@@ -52,25 +56,25 @@ const LoadingModal = ({ isVisible, onClose }) => {
                         </div>
 
                         <div className="loading-modal-body">
-                            <h3>Generando tu consejo personalizado</h3>
+                            <h3>{t("profile.generatingAdvice")}</h3>
                             <p>Nuestro asistente está analizando tu situación financiera...</p>
 
                             <div className="loading-steps">
                                 <div className="loading-step active">
                                     <div className="step-icon">📊</div>
-                                    <span>Analizando ingresos</span>
+                                    <span>{t("profile.analyzingIncome")}</span>
                                 </div>
                                 <div className="loading-step active">
                                     <div className="step-icon">💰</div>
-                                    <span>Evaluando gastos</span>
+                                    <span>{t("profile.evaluatingExpenses")}</span>
                                 </div>
                                 <div className="loading-step active">
                                     <div className="step-icon">🎯</div>
-                                    <span>Revisando metas</span>
+                                    <span>{t("profile.reviewingGoals")}</span>
                                 </div>
                                 <div className="loading-step">
                                     <div className="step-icon">🤖</div>
-                                    <span>Generando recomendaciones</span>
+                                    <span>{t("profile.generatingRecommendations")}</span>
                                 </div>
                             </div>
 
@@ -97,11 +101,13 @@ const LoadingModal = ({ isVisible, onClose }) => {
 
 // Componente del botón de modo oscuro
 function DarkModeToggle({ darkMode, toggleDarkMode }) {
+    const { t } = useTranslation()
+
     return (
         <button
             className="dark-mode-toggle"
             onClick={toggleDarkMode}
-            aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+            aria-label={darkMode ? t("profile.accessibility.lightMode") : t("profile.accessibility.darkMode")}
         >
             {darkMode ? <Sun size={24} /> : <Moon size={24} />}
         </button>
@@ -109,10 +115,10 @@ function DarkModeToggle({ darkMode, toggleDarkMode }) {
 }
 
 export default function PerfilEditable() {
+    const { t } = useTranslation()
+
     // Hook para notificaciones toast
-
     const toastFunctions = useToast()
-
 
     // Hook personalizado para manejo de errores (ahora con toast integrado)
     const { errors, setFieldError, clearFieldError, clearAllErrors, setSuccess, handleApiError, setGlobalError } =
@@ -143,12 +149,12 @@ export default function PerfilEditable() {
     const [variableExpenses, setVariableExpenses] = useState([])
     const [goals, setGoals] = useState([])
 
-    // Opciones de frecuencia
+    // Opciones de frecuencia traducidas
     const frequencyOptions = [
-        { value: "MONTHLY", label: "Mensual" },
-        { value: "WEEKLY", label: "Semanal" },
-        { value: "YEARLY", label: "Anual" },
-        { value: "DAILY", label: "Diario" },
+        { value: "MONTHLY", label: t("profile.frequencies.MONTHLY") },
+        { value: "WEEKLY", label: t("profile.frequencies.WEEKLY") },
+        { value: "YEARLY", label: t("profile.frequencies.YEARLY") },
+        { value: "DAILY", label: t("profile.frequencies.DAILY") },
     ]
 
     // Inicializar tema oscuro desde localStorage
@@ -183,7 +189,7 @@ export default function PerfilEditable() {
             return await response.json()
         } catch (error) {
             console.warn(`Error al cargar ${context}:`, error.message)
-            handleApiError(error, `Error al cargar ${context}`)
+            handleApiError(error, t("profile.messages.errorLoadingData", { context }))
             return []
         }
     }
@@ -245,7 +251,7 @@ export default function PerfilEditable() {
                 setVariableExpenses(enhancedOverview.variableExpenses || [])
                 setGoals(enhancedOverview.goals || [])
             } catch (error) {
-                handleApiError(error, "Error al cargar el perfil")
+                handleApiError(error, t("profile.messages.errorLoadingProfile"))
             } finally {
                 setLoading(false)
             }
@@ -273,7 +279,7 @@ export default function PerfilEditable() {
             setOverview((prev) => ({ ...prev, monthlyIncome }))
             setEditingIncome(false)
             localStorage.setItem("monthlyIncome", monthlyIncome.toString())
-            setSuccess("Ingreso actualizado correctamente")
+            setSuccess(t("profile.messages.incomeUpdated"))
         } catch (error) {
             // Manejar errores de validación específicos para el ingreso
             if (error.fieldErrors) {
@@ -281,7 +287,7 @@ export default function PerfilEditable() {
                     setFieldError("monthlyIncome", error.fieldErrors.monthlyIncome)
                 }
             }
-            handleApiError(error, "Error al guardar el ingreso")
+            handleApiError(error, t("profile.messages.errorSaving") + " el ingreso")
         } finally {
             setSaving(false)
         }
@@ -372,7 +378,7 @@ export default function PerfilEditable() {
 
             // Si hay errores, no actualizar el estado y mostrar mensaje
             if (hasErrors) {
-                const fallback = "Algunos elementos no se pudieron guardar. Por favor, revisa los errores y corrige los campos marcados."
+                const fallback = t("profile.messages.someItemsNotSaved")
                 setGlobalError(firstErrorMessage || fallback)
                 return
             }
@@ -395,9 +401,9 @@ export default function PerfilEditable() {
                 [type === "fixed" ? "fixedExpenses" : type === "variable" ? "variableExpenses" : "goals"]: savedItems,
             }))
 
-            setSuccess("Cambios guardados correctamente")
+            setSuccess(t("profile.messages.changesSaved"))
         } catch (error) {
-            handleApiError(error, `Error al guardar ${type}`)
+            handleApiError(error, t("profile.messages.errorSaving") + ` ${type}`)
         } finally {
             setSaving(false)
         }
@@ -429,9 +435,9 @@ export default function PerfilEditable() {
             else if (type === "variable") setVariableExpenses((prev) => prev.filter((e) => e.id !== id))
             else if (type === "goal") setGoals((prev) => prev.filter((e) => e.id !== id))
 
-            setSuccess("Elemento eliminado correctamente")
+            setSuccess(t("profile.messages.itemDeleted"))
         } catch (error) {
-            handleApiError(error, "Error al eliminar el elemento")
+            handleApiError(error, t("profile.messages.errorDeleting"))
         }
     }
 
@@ -501,7 +507,7 @@ export default function PerfilEditable() {
             const token = localStorage.getItem("token")
 
             if (!overview || !userId) {
-                setGlobalError("No hay datos suficientes para generar el consejo. Por favor, recarga la página.")
+                setGlobalError(t("profile.messages.insufficientData"))
                 return
             }
 
@@ -531,7 +537,9 @@ export default function PerfilEditable() {
                 })),
             }
 
-            await fetchWithErrorHandling(`https://economicallye-1.onrender.com/api/advice`, {
+            console.log("🚀 Enviando datos para generar consejo:", requestData)
+
+            const response = await fetchWithErrorHandling(`https://economicallye-1.onrender.com/api/advice`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -541,13 +549,34 @@ export default function PerfilEditable() {
                 body: JSON.stringify(requestData),
             })
 
-            // Simular un pequeño delay para mostrar el modal
-            await new Promise((resolve) => setTimeout(resolve, 1000))
+            const result = await response.json()
+            console.log("📋 Respuesta del servidor:", result)
 
-            setSuccess("Nuevo consejo generado correctamente.")
+            // Verificar si la respuesta contiene un mensaje de error de validación
+            if (
+                result.iaResult &&
+                (result.iaResult.includes("Debes actualizar tu información financiera") ||
+                    result.iaResult.includes("You must update your financial information") ||
+                    result.iaResult.includes("Debes esperar al menos") ||
+                    result.iaResult.includes("You must wait at least") ||
+                    result.iaResult.includes("Debes tener al menos una meta") ||
+                    result.iaResult.includes("You must have at least one") ||
+                    result.iaResult.includes("Debes configurar tus ingresos") ||
+                    result.iaResult.includes("You must configure your monthly income"))
+            ) {
+                // Es un mensaje de error de validación, no un consejo válido
+                setGlobalError(result.iaResult)
+                console.log("❌ Error de validación:", result.iaResult)
+                return
+            }
+
+            // Si llegamos aquí, el consejo se generó correctamente
+            await new Promise((resolve) => setTimeout(resolve, 1000))
+            setSuccess(t("profile.messages.adviceGenerated"))
             navigate(`/consejos/${userId}`)
         } catch (error) {
-            handleApiError(error, "Error al generar el consejo")
+            console.error("💥 Error al generar consejo:", error)
+            handleApiError(error, t("profile.messages.errorGeneratingAdvice"))
         } finally {
             setGeneratingAdvice(false)
         }
@@ -570,7 +599,7 @@ export default function PerfilEditable() {
                         <div className="spinner-ring"></div>
                         <div className="spinner-ring"></div>
                     </div>
-                    <h3>Cargando tu perfil financiero...</h3>
+                    <h3>{t("profile.loading")}</h3>
                 </div>
                 <div className="loading-background">
                     <div className="floating-shape shape-1"></div>
@@ -586,10 +615,10 @@ export default function PerfilEditable() {
             <div className={`elegant-error-container ${darkMode ? "dark-theme" : ""}`}>
                 <div className="error-content">
                     <div className="error-icon">⚠️</div>
-                    <h2>Oops! Algo salió mal</h2>
+                    <h2>{t("profile.error")}</h2>
                     <p>{globalError}</p>
                     <button className="elegant-btn primary" onClick={() => window.location.reload()}>
-                        Reintentar
+                        {t("profile.retry")}
                     </button>
                 </div>
             </div>
@@ -600,39 +629,36 @@ export default function PerfilEditable() {
     const scrollNavLinks = [
         {
             href: "#inicio",
-            label: "Inicio",
+            label: t("profile.navigation.home"),
             onClick: () => navigate("/"),
         },
         {
             href: "#consejos",
-            label: "Ver Consejos",
+            label: t("profile.navigation.viewAdvice"),
             onClick: () => navigate(`/consejos/${userId}`),
         },
         {
             href: "#dashboard",
-            label: "Dashboard",
+            label: t("profile.navigation.dashboard"),
             onClick: () => navigate(`/dashboard/${userId}`),
         },
         {
             href: "#generar",
-            label: "Generar Consejo",
+            label: t("profile.navigation.generateAdvice"),
             onClick: handleGenerateAdvice,
         },
     ]
 
     return (
         <div className={`dashboard-container ${darkMode ? "dark-theme" : ""}`}>
-            {/* Botón de modo oscuro flotante */}
             <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-            {/* Modal de carga para generar consejo */}
+            <LanguageSwitcher />
+
             <LoadingModal isVisible={generatingAdvice} />
 
-            {/* Contenedor de notificaciones toast */}
             <ToastContainer toasts={toastFunctions.toasts} onRemove={toastFunctions.removeToast} />
 
-
-            {/* Formas de fondo */}
             <div className="background-shapes">
                 <div className="shape shape-1"></div>
                 <div className="shape shape-2"></div>
@@ -646,19 +672,17 @@ export default function PerfilEditable() {
             <motion.header className="elegant-header" initial="hidden" animate="visible" variants={fadeUpVariants} custom={0}>
                 <div className="header-content">
                     <div className="welcome-section">
-                        <h1 className="welcome-title">
-                            Hola, <span className="highlight">{overview?.name}</span>
-                        </h1>
-                        <p className="welcome-subtitle">Gestiona tu futuro financiero</p>
+                        <h1 className="welcome-title">{t("profile.welcome", { name: overview?.name })}</h1>
+                        <p className="welcome-subtitle">{t("profile.subtitle")}</p>
                     </div>
                     <div className="header-actions">
                         <button className="elegant-btn primary" onClick={() => navigate(`/consejos/${userId}`)}>
                             <span className="btn-icon"></span>
-                            Ver Consejos
+                            {t("profile.viewAdvice")}
                         </button>
                         <button className="elegant-btn secondary" onClick={handleGenerateAdvice}>
                             <span className="btn-icon"></span>
-                            Generar Consejo
+                            {t("profile.generateAdvice")}
                         </button>
                     </div>
                 </div>
@@ -674,45 +698,45 @@ export default function PerfilEditable() {
             >
                 <h2 className="section-title">
                     <span className="title-icon"></span>
-                    Resumen Financiero
+                    {t("profile.financialSummary")}
                 </h2>
                 <div className="overview-grid">
                     <div className="overview-card income">
                         <div className="card-header">
                             <div className="card-icon"></div>
-                            <h3>Ingresos</h3>
+                            <h3>{t("profile.income")}</h3>
                         </div>
                         <div className="card-value">€{monthlyIncome.toLocaleString()}</div>
-                        <div className="card-label">Mensuales</div>
+                        <div className="card-label">{t("profile.monthly")}</div>
                     </div>
 
                     <div className="overview-card expenses">
                         <div className="card-header">
                             <div className="card-icon"></div>
-                            <h3>Gastos</h3>
+                            <h3>{t("profile.expenses")}</h3>
                         </div>
                         <div className="card-value">€{totalExpenses.toLocaleString()}</div>
-                        <div className="card-label">Totales</div>
+                        <div className="card-label">{t("profile.total")}</div>
                     </div>
 
                     <div className={`overview-card ${totalSavings >= 0 ? "savings" : "deficit"}`}>
                         <div className="card-header">
                             <div className="card-icon">{totalSavings >= 0 ? "" : ""}</div>
-                            <h3>{totalSavings >= 0 ? "Ahorro" : "Déficit"}</h3>
+                            <h3>{totalSavings >= 0 ? t("profile.savings") : t("profile.deficit")}</h3>
                         </div>
                         <div className="card-value">€{Math.abs(totalSavings).toLocaleString()}</div>
-                        <div className="card-label">Estimado</div>
+                        <div className="card-label">{t("profile.estimated")}</div>
                     </div>
 
                     <div className="overview-card percentage">
                         <div className="card-header">
                             <div className="card-icon"></div>
-                            <h3>% Ahorro</h3>
+                            <h3>{t("profile.savingsPercentage")}</h3>
                         </div>
                         <div className="card-value">
                             {monthlyIncome > 0 ? ((totalSavings / monthlyIncome) * 100).toFixed(1) : "0.0"}%
                         </div>
-                        <div className="card-label">Del ingreso</div>
+                        <div className="card-label">{t("profile.ofIncome")}</div>
                     </div>
                 </div>
             </motion.section>
@@ -729,17 +753,17 @@ export default function PerfilEditable() {
                     <div className="card-header">
                         <h3>
                             <span className="header-icon"></span>
-                            Ingreso Mensual
+                            {t("profile.monthlyIncome")}
                         </h3>
                         <button className="elegant-btn outline" onClick={() => setEditingIncome(!editingIncome)}>
-                            {editingIncome ? "Cancelar" : "Editar"}
+                            {editingIncome ? t("profile.cancel") : t("profile.edit")}
                         </button>
                     </div>
                     <div className="card-content">
                         {editingIncome ? (
                             <div className="edit-form">
                                 <div className="form-group">
-                                    <label>Cantidad (€)</label>
+                                    <label>{t("profile.amount")}</label>
                                     <input
                                         type="number"
                                         className="elegant-input"
@@ -753,7 +777,7 @@ export default function PerfilEditable() {
                                 </div>
                                 <div className="form-actions">
                                     <button className="elegant-btn primary" onClick={saveIncome} disabled={saving}>
-                                        {saving ? "Guardando..." : "Guardar"}
+                                        {saving ? t("profile.saving") : t("profile.save")}
                                     </button>
                                     <button
                                         className="elegant-btn outline"
@@ -763,14 +787,14 @@ export default function PerfilEditable() {
                                             clearAllErrors()
                                         }}
                                     >
-                                        Cancelar
+                                        {t("profile.cancel")}
                                     </button>
                                 </div>
                             </div>
                         ) : (
                             <div className="income-display">
                                 <div className="amount-display">€{monthlyIncome.toLocaleString()}</div>
-                                <div className="amount-label">Por mes</div>
+                                <div className="amount-label">{t("profile.perMonth")}</div>
                             </div>
                         )}
                     </div>
@@ -791,17 +815,17 @@ export default function PerfilEditable() {
                         <div className="card-header">
                             <h3>
                                 <span className="header-icon"></span>
-                                Gastos Fijos
+                                {t("profile.fixedExpenses")}
                             </h3>
                             <div className="header-actions">
                                 <span className="total-badge">€{totalFixed.toLocaleString()}</span>
                                 {editingFixed && (
                                     <button className="elegant-btn success small" onClick={() => addItem("fixed")}>
-                                        Añadir
+                                        {t("profile.add")}
                                     </button>
                                 )}
                                 <button className="elegant-btn outline small" onClick={() => setEditingFixed(!editingFixed)}>
-                                    {editingFixed ? "Cancelar" : "Editar"}
+                                    {editingFixed ? t("profile.cancel") : t("profile.edit")}
                                 </button>
                             </div>
                         </div>
@@ -818,7 +842,7 @@ export default function PerfilEditable() {
                                                             className="elegant-input"
                                                             value={expense.name || ""}
                                                             onChange={(e) => updateField("fixed", expense.id, "name", e.target.value)}
-                                                            placeholder="Nombre del gasto"
+                                                            placeholder={t("profile.expenseName")}
                                                         />
                                                         <FieldError error={errors[`fixed_${expense.id}_name`]} />
                                                     </div>
@@ -857,20 +881,20 @@ export default function PerfilEditable() {
                                                             className="elegant-input"
                                                             value={expense.description || ""}
                                                             onChange={(e) => updateField("fixed", expense.id, "description", e.target.value)}
-                                                            placeholder="Descripción"
+                                                            placeholder={t("profile.description")}
                                                         />
                                                         <FieldError error={errors[`fixed_${expense.id}_description`]} />
                                                     </div>
                                                 </div>
                                                 <button className="elegant-btn danger small" onClick={() => deleteItem("fixed", expense.id)}>
-                                                    Eliminar
+                                                    {t("profile.delete")}
                                                 </button>
                                             </div>
                                         ))}
                                     </div>
                                     <div className="form-actions">
                                         <button className="elegant-btn primary" onClick={() => saveAllItems("fixed")} disabled={saving}>
-                                            {saving ? "Guardando..." : "Guardar Cambios"}
+                                            {saving ? t("profile.saving") : t("profile.saveChanges")}
                                         </button>
                                         <button
                                             className="elegant-btn outline"
@@ -880,7 +904,7 @@ export default function PerfilEditable() {
                                                 clearAllErrors()
                                             }}
                                         >
-                                            Cancelar
+                                            {t("profile.cancel")}
                                         </button>
                                     </div>
                                 </div>
@@ -905,7 +929,7 @@ export default function PerfilEditable() {
                                     ) : (
                                         <div className="no-data">
                                             <div className="no-data-icon"></div>
-                                            <p>No hay gastos fijos registrados</p>
+                                            <p>{t("profile.noFixedExpenses")}</p>
                                         </div>
                                     )}
                                 </div>
@@ -918,17 +942,17 @@ export default function PerfilEditable() {
                         <div className="card-header">
                             <h3>
                                 <span className="header-icon"></span>
-                                Gastos Variables
+                                {t("profile.variableExpenses")}
                             </h3>
                             <div className="header-actions">
                                 <span className="total-badge">€{totalVariable.toLocaleString()}</span>
                                 {editingVariable && (
                                     <button className="elegant-btn success small" onClick={() => addItem("variable")}>
-                                        Añadir
+                                        {t("profile.add")}
                                     </button>
                                 )}
                                 <button className="elegant-btn outline small" onClick={() => setEditingVariable(!editingVariable)}>
-                                    {editingVariable ? "Cancelar" : "Editar"}
+                                    {editingVariable ? t("profile.cancel") : t("profile.edit")}
                                 </button>
                             </div>
                         </div>
@@ -945,7 +969,7 @@ export default function PerfilEditable() {
                                                             className="elegant-input"
                                                             value={expense.name || ""}
                                                             onChange={(e) => updateField("variable", expense.id, "name", e.target.value)}
-                                                            placeholder="Nombre del gasto"
+                                                            placeholder={t("profile.expenseName")}
                                                         />
                                                         <FieldError error={errors[`variable_${expense.id}_name`]} />
                                                     </div>
@@ -979,21 +1003,21 @@ export default function PerfilEditable() {
                                                             className="elegant-input"
                                                             value={expense.description || ""}
                                                             onChange={(e) => updateField("variable", expense.id, "description", e.target.value)}
-                                                            placeholder="Descripción"
+                                                            placeholder={t("profile.description")}
                                                         />
                                                         <FieldError error={errors[`variable_${expense.id}_description`]} />
                                                     </div>
                                                 </div>
 
                                                 <button className="elegant-btn danger small" onClick={() => deleteItem("variable", expense.id)}>
-                                                    Eliminar
+                                                    {t("profile.delete")}
                                                 </button>
                                             </div>
                                         ))}
                                     </div>
                                     <div className="form-actions">
                                         <button className="elegant-btn primary" onClick={() => saveAllItems("variable")} disabled={saving}>
-                                            {saving ? "Guardando..." : "Guardar Cambios"}
+                                            {saving ? t("profile.saving") : t("profile.saveChanges")}
                                         </button>
                                         <button
                                             className="elegant-btn outline"
@@ -1003,7 +1027,7 @@ export default function PerfilEditable() {
                                                 clearAllErrors()
                                             }}
                                         >
-                                            Cancelar
+                                            {t("profile.cancel")}
                                         </button>
                                     </div>
                                 </div>
@@ -1026,7 +1050,7 @@ export default function PerfilEditable() {
                                     ) : (
                                         <div className="no-data">
                                             <div className="no-data-icon"></div>
-                                            <p>No hay gastos variables registrados</p>
+                                            <p>{t("profile.noVariableExpenses")}</p>
                                         </div>
                                     )}
                                 </div>
@@ -1042,16 +1066,16 @@ export default function PerfilEditable() {
                     <div className="card-header">
                         <h3>
                             <span className="header-icon"></span>
-                            Metas de Ahorro
+                            {t("profile.savingsGoals")}
                         </h3>
                         <div className="header-actions">
                             {editingGoals && (
                                 <button className="elegant-btn success small" onClick={() => addItem("goal")}>
-                                    Añadir
+                                    {t("profile.add")}
                                 </button>
                             )}
                             <button className="elegant-btn outline small" onClick={() => setEditingGoals(!editingGoals)}>
-                                {editingGoals ? "Cancelar" : "Editar"}
+                                {editingGoals ? t("profile.cancel") : t("profile.edit")}
                             </button>
                         </div>
                     </div>
@@ -1068,7 +1092,7 @@ export default function PerfilEditable() {
                                                         className="elegant-input"
                                                         value={goal.name || ""}
                                                         onChange={(e) => updateField("goal", goal.id, "name", e.target.value)}
-                                                        placeholder="Nombre de la meta"
+                                                        placeholder={t("profile.goalName")}
                                                     />
                                                     <FieldError error={errors[`goal_${goal.id}_name`]} />
                                                 </div>
@@ -1081,7 +1105,7 @@ export default function PerfilEditable() {
                                                         onChange={(e) =>
                                                             updateField("goal", goal.id, "targetAmount", Number.parseFloat(e.target.value) || 0)
                                                         }
-                                                        placeholder="Meta (€)"
+                                                        placeholder={t("profile.target")}
                                                     />
                                                     <FieldError error={errors[`goal_${goal.id}_targetAmount`]} />
                                                 </div>
@@ -1094,7 +1118,7 @@ export default function PerfilEditable() {
                                                         onChange={(e) =>
                                                             updateField("goal", goal.id, "currentAmount", Number.parseFloat(e.target.value) || 0)
                                                         }
-                                                        placeholder="Actual (€)"
+                                                        placeholder={t("profile.current")}
                                                     />
                                                     <FieldError error={errors[`goal_${goal.id}_currentAmount`]} />
                                                 </div>
@@ -1115,20 +1139,20 @@ export default function PerfilEditable() {
                                                         className="elegant-input"
                                                         value={goal.description || ""}
                                                         onChange={(e) => updateField("goal", goal.id, "description", e.target.value)}
-                                                        placeholder="Descripción"
+                                                        placeholder={t("profile.description")}
                                                     />
                                                     <FieldError error={errors[`goal_${goal.id}_description`]} />
                                                 </div>
                                             </div>
                                             <button className="elegant-btn danger small" onClick={() => deleteItem("goal", goal.id)}>
-                                                Eliminar
+                                                {t("profile.delete")}
                                             </button>
                                         </div>
                                     ))}
                                 </div>
                                 <div className="form-actions">
                                     <button className="elegant-btn primary" onClick={() => saveAllItems("goal")} disabled={saving}>
-                                        {saving ? "Guardando..." : "Guardar Cambios"}
+                                        {saving ? t("profile.saving") : t("profile.saveChanges")}
                                     </button>
                                     <button
                                         className="elegant-btn outline"
@@ -1138,7 +1162,7 @@ export default function PerfilEditable() {
                                             clearAllErrors()
                                         }}
                                     >
-                                        Cancelar
+                                        {t("profile.cancel")}
                                     </button>
                                 </div>
                             </div>
@@ -1187,8 +1211,8 @@ export default function PerfilEditable() {
                                 ) : (
                                     <div className="no-data">
                                         <div className="no-data-icon"></div>
-                                        <h4>No tienes metas de ahorro</h4>
-                                        <p>¡Establece tus primeras metas para comenzar a ahorrar!</p>
+                                        <h4>{t("profile.noGoals")}</h4>
+                                        <p>{t("profile.noGoalsDescription")}</p>
                                     </div>
                                 )}
                             </div>

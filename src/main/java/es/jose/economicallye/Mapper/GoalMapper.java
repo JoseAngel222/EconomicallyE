@@ -18,7 +18,7 @@ public interface GoalMapper {
 
     @Mapping(source = "userId", target = "user.id")
     @Mapping(source = "name", target = "name")
-    @Mapping(target = "relatedExpenses", ignore = true) // opcional, puedes luego mapear esto si lo necesitas
+    @Mapping(target = "relatedExpenses", ignore = true) // opcional, se puede mapear luego
     Goal toEntity(GoalDTO dto);
 
     List<GoalDTO> toDtoList(List<Goal> goals);

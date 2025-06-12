@@ -52,7 +52,7 @@ public class SecurityConfig {
         configuration.setMaxAge(3600L);  // 1 hora
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration); // Solo las rutas de API
+        source.registerCorsConfiguration("/api/**", configuration);
         return source;
     }
 
@@ -66,10 +66,11 @@ public class SecurityConfig {
                                 "/api/auth/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html"
+                                "/swagger-ui.html",
+                                "/api/users/**"
                         ).permitAll()
                         .requestMatchers(
-                                "/api/users/**",
+
                                 "/api/fixed-expenses/**",
                                 "/api/variable-expenses/**",
                                 "/api/goals/**",

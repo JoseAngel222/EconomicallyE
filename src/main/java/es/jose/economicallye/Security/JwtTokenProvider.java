@@ -61,7 +61,7 @@ public class JwtTokenProvider {
 
     }
 
-    // Versión original (si la necesitas)
+    // Versión original
 
     /*
     public String generateToken(UserDetails userDetails) {
